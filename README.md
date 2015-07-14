@@ -1,7 +1,13 @@
 Bootstrap table context menu
 =======================
 
-This is a light-weight extension for [Bootstrap table](http://bootstrap-table.wenzhixin.net.cn/) that adds context menu support. The extension supports both right-clicking on a row or clicking a button on the row to bring up the context menu.
+This is a light-weight extension for [Bootstrap table](http://bootstrap-table.wenzhixin.net.cn/) that adds context menu support. 
+
+Features
+-----
+- Supports both right-clicking a row or clicking on a button on the row to bring up a context menu.
+- Works elegantly with Bootstrap dropdown menus and Font-Awesome.
+- Events for context menu and context menu item clicks.
 
 Usage
 -----
