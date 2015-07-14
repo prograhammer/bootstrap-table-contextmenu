@@ -15,7 +15,7 @@ First of all, you need to include Bootstrap and this extension:
     <script src="../src/bootstrap-table-contextmenu.js"></script>
 ```
 
-Then you can create placeholder element and initialize it with javascript as a filter:
+Then you can create your dropdown menu element and use its selector in the table's javascript:
 ```
 <body>
     <div class="container">
@@ -48,7 +48,7 @@ Then you can create placeholder element and initialize it with javascript as a f
 </body>
 
 <script>
-  $grid.bootstrapTable({
+  $('#grid').bootstrapTable({
       contextMenu: '#context-menu',
       onContextMenuItem: function(row, $el){
           if($el.data("item") == "edit"){
