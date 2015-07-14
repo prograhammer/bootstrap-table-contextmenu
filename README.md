@@ -51,16 +51,16 @@ Then you can create your dropdown menu element and use its selector in the table
         <li data-item="action1"><a>Action Here</a></li>
         <li data-item="action2"><a>And Action Here</a></li>
     </ul>  
-</body>
 
-<script>
-  $('#grid').bootstrapTable({
-      contextMenu: '#context-menu',
-      onContextMenuItem: function(row, $el){
-          if($el.data("item") == "edit"){
-              alert(row.itemid);
+    <script>
+      $('#grid').bootstrapTable({
+          contextMenu: '#context-menu',
+          onContextMenuItem: function(row, $el){
+              if($el.data("item") == "edit"){
+                  alert(row.itemid);
+              }
           }
-      }
-  });
-</script>
+      });
+    </script>
+</body>
 ```
