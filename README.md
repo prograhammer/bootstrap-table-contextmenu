@@ -1,7 +1,7 @@
 Bootstrap table context menu
 =======================
 
-This is a light-weight extension for [Bootstrap table](http://bootstrap-table.wenzhixin.net.cn/) that adds context menu support.
+This is a light-weight extension for [Bootstrap table](http://bootstrap-table.wenzhixin.net.cn/) that adds context menu support. The extension supports both right-clicking on a row or clicking a button on the row to bring up the context menu.
 
 Usage
 -----
