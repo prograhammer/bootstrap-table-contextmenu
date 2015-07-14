@@ -1,6 +1,7 @@
 /**
  * @author David Graham <prograhammer@gmail.com>
- * extensions: https://github.com/prograhammer/bootstrap-table-contextmenu
+ * @version v0.0.9
+ * @link https://github.com/prograhammer/bootstrap-table-contextmenu
  */
 
 !function($) {
