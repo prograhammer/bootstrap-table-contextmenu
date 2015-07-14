@@ -9,17 +9,20 @@
     'use strict';
 
     $.extend($.fn.bootstrapTable.defaults, {
+        contextMenu: undefined,
+        contextMenuTriggerLeft: false,
+        contextMenuButton: undefined,
         onContextMenuItem: function (row, $element) {
             return false;
         },
-        onContextMenu: function (row, $element) {
+        onContextMenuRow: function (row, $element) {
             return false;
         }
     });
 
     $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
         'contextmenu-item.bs.table': 'onContextMenuItem',
-        'contextmenu-row.bs.table': 'onContextMenu'
+        'contextmenu-row.bs.table': 'onContextMenuRow'
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
@@ -100,6 +103,10 @@
         }
 
         that.trigger('contextmenu-row', item, $tr);
+
+        if(that.options.contextMenuTriggerLeft) {
+            that.trigger('click-row', item, $tr);
+        }
     };
 
 
