@@ -15,7 +15,7 @@ First of all, you need to include Bootstrap and this extension:
     <script src="../src/bootstrap-table-contextmenu.js"></script>
 ```
 
-Then you can create your dropdown menu element and use its selector in the table's javascript:
+Then you can create your dropdown menu element and use its selector in the table settings javascript:
 ```
 <body>
     <div class="container">
