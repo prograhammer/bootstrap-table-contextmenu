@@ -46,10 +46,10 @@ Then you can create your dropdown menu element and use its selector in the table
   
     <!-- context menu -->
     <ul id="context-menu" class="dropdown-menu">
-        <li data-item="edit">Edit</li>
-        <li data-item="delete">Delete</li>
-        <li data-item="action1">Action Here</li>
-        <li data-item="action2">And Action Here</li>
+        <li data-item="edit"><a>Edit</a></li>
+        <li data-item="delete"><a>Delete</a></li>
+        <li data-item="action1"><a>Action Here</a></li>
+        <li data-item="action2"><a>And Action Here</a></li>
     </ul>  
 </body>
 
