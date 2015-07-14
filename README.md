@@ -1,7 +1,7 @@
 Bootstrap table context menu
 =======================
 
-This is a light-weight extension for [Bootstrap table](http://wenzhixin.net.cn/p/bootstrap-table/docs/extensions.html) that adds context menu support.
+This is a light-weight extension for [Bootstrap table](http://bootstrap-table.wenzhixin.net.cn/) that adds context menu support.
 
 Usage
 -----
