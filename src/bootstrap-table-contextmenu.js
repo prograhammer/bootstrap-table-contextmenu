@@ -19,7 +19,7 @@
 
     $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
         'contextmenu-item.bs.table': 'onContextMenuItem',
-        'contextmenu.bs.table': 'onContextMenu'
+        'contextmenu-row.bs.table': 'onContextMenu'
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
@@ -99,7 +99,7 @@
                 .show();
         }
 
-        that.trigger('contextmenu', item, $tr);
+        that.trigger('contextmenu-row', item, $tr);
     };
 
 
