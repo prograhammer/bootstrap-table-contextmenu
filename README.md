@@ -7,7 +7,7 @@ Features
 -----
 - Supports both right-clicking a row or clicking on a button on the row to bring up a context menu.
 - Works elegantly with Bootstrap dropdown menus and Font-Awesome.
-- Events for context menu and context menu item clicks.
+- Events for menu and item clicks.
 
 Usage
 -----
