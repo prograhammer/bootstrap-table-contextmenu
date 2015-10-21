@@ -26,16 +26,17 @@
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _init = BootstrapTable.prototype.init;
+        _initBody = BootstrapTable.prototype.initBody;
 
-    BootstrapTable.prototype.init = function () {
-        _init.apply(this, Array.prototype.slice.apply(arguments));
+    BootstrapTable.prototype.initBody = function () {
+
+        // InitBody
+        _initBody.apply(this, Array.prototype.slice.apply(arguments));
 
         if (this.options.contextMenu) {
             initContextMenu(this);
         }
     };
-
 
     var initContextMenu = function (el) {
         var that = el;
