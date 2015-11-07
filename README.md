@@ -52,14 +52,18 @@ Simple example:
     </ul>  
 
     <script>
-      $('#grid').bootstrapTable({
-          contextMenu: '#context-menu',
-          onContextMenuItem: function(row, $el){
-              if($el.data("item") == "edit"){
-                  alert(row.itemid);
-              }
-          }
-      });
+	  $(function () {
+
+		  $('#grid').bootstrapTable({
+			  contextMenu: '#context-menu',
+			  onContextMenuItem: function(row, $el){
+				  if($el.data("item") == "edit"){
+					  alert(row.itemid);
+				  }
+			  }
+		  });
+	  
+	  });
     </script>
 </body>
 ```
