@@ -1,6 +1,6 @@
 /**
  * @author David Graham <prograhammer@gmail.com>
- * @version v0.0.9
+ * @version v1.0.1
  * @link https://github.com/prograhammer/bootstrap-table-contextmenu
  */
 
@@ -98,7 +98,8 @@
                 .css({
                     position: "absolute",
                     left: getMenuPosition($menu, screenPosX, 'width', 'scrollLeft'),
-                    top: getMenuPosition($menu, screenPosY, 'height', 'scrollTop')
+                    top: getMenuPosition($menu, screenPosY, 'height', 'scrollTop'),
+                    zIndex: 1100
                 })
                 .show();
         }
