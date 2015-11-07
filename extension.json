@@ -1,0 +1,17 @@
+{
+  "name": "Context Menu",
+  "version": "1.0.0",
+  "description": "Context menu support to wenzhixin bootstrap table",
+  "url": "https://github.com/wenzhixin/bootstrap-table/tree/master/src/extensions/contextmenu",
+  "example": "http://issues.wenzhixin.net.cn/bootstrap-table/#extensions/contextmenu.html",
+
+  "plugins": [{
+    "name": "bootstrap-table-contextmenu",
+    "url": "https://github.com/prograhammer/bootstrap-table-contextmenu"
+  }],
+
+  "author": {
+    "name": "David Graham",
+    "image": "https://avatars1.githubusercontent.com/u/4474660"
+  }
+}
