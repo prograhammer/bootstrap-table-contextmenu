@@ -99,7 +99,7 @@
                     position: "absolute",
                     left: getMenuPosition($menu, screenPosX, 'width', 'scrollLeft'),
                     top: getMenuPosition($menu, screenPosY, 'height', 'scrollTop'),
-                    zIndex: 1100
+                    zIndex: 1101
                 })
                 .show();
         }
