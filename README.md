@@ -17,7 +17,7 @@ Usage
 -----
 Include this extension:
 ```
-<script src="../src/bootstrap-table-contextmenu.js"></script>
+<script src="../bootstrap-table-contextmenu.js"></script>
 ```
 
 Simple example:
