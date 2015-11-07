@@ -9,6 +9,10 @@ Features
 - Works elegantly with Bootstrap dropdown menus and Font-Awesome.
 - Events for menu and item clicks.
 
+Demo
+-----
+See various features in action: [demo here](http://www.prograhammer.com/demos/bootstrap-table-contextmenu)
+
 Usage
 -----
 ### Simple example
