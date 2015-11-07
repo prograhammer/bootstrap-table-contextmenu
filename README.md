@@ -52,8 +52,7 @@ Simple example:
     </ul>  
 
     <script>
-	  $(function () {
-
+	  $(function() {
 		  $('#grid').bootstrapTable({
 			  contextMenu: '#context-menu',
 			  onContextMenuItem: function(row, $el){
@@ -62,7 +61,6 @@ Simple example:
 				  }
 			  }
 		  });
-	  
 	  });
     </script>
 </body>
