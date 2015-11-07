@@ -11,7 +11,7 @@ Features
 
 Demo
 -----
-See various features in action: [demo here](http://www.prograhammer.com/demos/bootstrap-table-contextmenu)
+See it in action: [demo here](http://www.prograhammer.com/demos/bootstrap-table-contextmenu)
 
 Usage
 -----
@@ -69,14 +69,14 @@ Table Options
 
 |Name                   |Type     |Default   |Description|
 |-----------------------|---------|----------|-----------|
-|contextMenu            |String   |undefined |A jQuery selector that indicates the contextmenu            |
-|contextMenuButton      |String   |undefined |A jQuery selector that indicates a contextmenu button       |
-|contextMenuTriggerLeft |Boolean  |false     |Also trigger a left click when the contextmenu is triggered |
+|contextMenu            |String   |undefined |A jQuery selector that indicates the contextmenu.            |
+|contextMenuButton      |String   |undefined |A jQuery selector that indicates a contextmenu button.       |
+|contextMenuTriggerLeft |Boolean  |false     |Also trigger a left click when the contextmenu is triggered. |
 
 Events
 -----
 
 |Option Event           |jQuery Event               |Parameter     |Description|
 |-----------------------|---------------------------|--------------|-----------|
-|onContextMenuItem      |contextmenu-item.bs.table  |row, $element |This is all you will typically need. Fires when you click on a <code>li</code> on the context. | 
-|onContextMenuRow      |contextmenu-row.bs.table   |row, $element  |Fires when you right click on row. |
+|onContextMenuItem      |contextmenu-item.bs.table  |row, $element |This is all you will typically need. Fires when you click on a <code>li</code> on the contextmenu. | 
+|onContextMenuRow       |contextmenu-row.bs.table   |row, $element |Fires when you right-click on a row. |
