@@ -15,17 +15,12 @@ See various features in action: [demo here](http://www.prograhammer.com/demos/bo
 
 Usage
 -----
-### Simple example
-First of all, you need to include Bootstrap and this extension:
+Include this extension:
 ```
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="../src/bootstrap-table-contextmenu.js"></script>
 ```
 
-Then you can create your dropdown menu element and use its selector in the table settings javascript:
+Simple example:
 ```
 <body>
     <div class="container">
@@ -68,3 +63,20 @@ Then you can create your dropdown menu element and use its selector in the table
     </script>
 </body>
 ```
+
+Table Options
+-----
+
+|Name                   |Type     |Default   |Description|
+|-----------------------|---------|----------|-----------|
+|contextMenu            |String   |undefined |A jQuery selector that indicates the contextmenu            |
+|contextMenuButton      |String   |undefined |A jQuery selector that indicates a contextmenu button       |
+|contextMenuTriggerLeft |Boolean  |false     |Also trigger a left click when the contextmenu is triggered |
+
+Events
+-----
+
+|Option Event           |jQuery Event               |Parameter     |Description|
+|-----------------------|---------------------------|--------------|-----------|
+|onContextMenuItem      |contextmenu-item.bs.table  |row, $element |This is all you will typically need. Fires when you click on a <code>li</code> on the context. | 
+|onContextMenuRow      |contextmenu-row.bs.table   |row, $element  |Fires when you right click on row. |
