@@ -69,11 +69,12 @@ Simple example:
 Table Options
 -----
 
-|Name                   |Type     |Default   |Description|
-|-----------------------|---------|----------|-----------|
-|contextMenu            |String   |undefined |A jQuery selector that indicates the contextmenu.            |
-|contextMenuButton      |String   |undefined |A jQuery selector that indicates a contextmenu button.       |
-|contextMenuTriggerLeft |Boolean  |false     |Also trigger a left click when the contextmenu is triggered. |
+|Name                    |Type                 |Default   |Description|
+|------------------------|---------------------|----------|-----------|
+|contextMenu             |String               |undefined |A jQuery selector that indicates the contextmenu.            |
+|contextMenuButton       |String               |undefined |A jQuery selector that indicates a contextmenu button.       |
+|contextMenuTrigger      |'right','left','both'|'right'   |A jQuery selector that indicates a contextmenu button.       |
+|contextMenuAutoClickRow |Boolean              |false     |When the context menu is opened, also perform a left click on the row to select it.|
 
 Events
 -----
