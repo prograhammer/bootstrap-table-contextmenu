@@ -72,7 +72,7 @@ Table Options
 |Name                    |Type                 |Default   |Description|
 |------------------------|---------------------|----------|-----------|
 |contextMenu             |String               |undefined |A jQuery selector that indicates the contextmenu.            |
-|contextMenuButton       |String               |undefined |A jQuery selector that indicates a button on each row that will trigger the contextmenu to open.       |
+|contextMenuButton       |String               |undefined |A jQuery selector for a button on each table row to use to trigger open the contextmenu (good for touch screens).       |
 |contextMenuTrigger      |'right','left','both'|'right'   |Set what type of click will open the context menu.           |
 |contextMenuAutoClickRow |Boolean              |false     |When the context menu is opened, also perform a left click on the row to select it.|
 
