@@ -1,6 +1,6 @@
 /**
  * @author David Graham <prograhammer@gmail.com>
- * @version v1.0.1
+ * @version v1.0.0
  * @link https://github.com/prograhammer/bootstrap-table-contextmenu
  */
 
@@ -10,7 +10,8 @@
 
     $.extend($.fn.bootstrapTable.defaults, {
         contextMenu: undefined,
-        contextMenuTriggerLeft: false,
+        contextMenuTrigger: 'right',
+        contextMenuAutoClickRow: true,
         contextMenuButton: undefined,
         onContextMenuItem: function (row, $element) {
             return false;
@@ -41,14 +42,25 @@
     var initContextMenu = function (el) {
         var that = el;
 
-        // Right-click context menu
-        that.$body.find('> tr[data-index]').off('contextmenu').on('contextmenu', function (e) {
-            var $tr = $(this);
-            showContextMenu(that, $tr, e.clientX, e.clientY);
-            return false;
-        });
+        // Context menu on Right-click
+        if (that.options.contextMenuTrigger == 'right' || that.options.contextMenuTrigger == 'both') {
+            that.$body.find('> tr[data-index]').off('contextmenu').on('contextmenu', function (e) {
+                var $tr = $(this);
+                showContextMenu(that, $tr, e.clientX, e.clientY);
+                return false;
+            });
+        }
 
-        // Button-click context menu
+        // Context menu on Left-click
+        if (that.options.contextMenuTrigger == 'left' || that.options.contextMenuTrigger == 'both') {
+            that.$body.find('> tr[data-index]').off('click').on('click', function (e) {
+                var $tr = $(this);
+                showContextMenu(that, $tr, e.clientX, e.clientY);
+                return false;
+            });
+        }
+
+        // Context menu on Button-click
         if (typeof that.options.contextMenuButton === 'string') {
             that.$body.find('> tr[data-index]').find(that.options.contextMenuButton).off('click').on('click', function (e) {
                 var $tr = $(this).closest('tr[data-index]');
@@ -67,7 +79,7 @@
                 that.trigger('contextmenu-item', rowData, $(this));
             });
 
-            // Left click anywhere to hide context menu
+            // Left click anywhere outside to hide context menu
             $(document).click(function () {
                 $menu.hide();
             });
@@ -99,14 +111,14 @@
                     position: "absolute",
                     left: getMenuPosition($menu, screenPosX, 'width', 'scrollLeft'),
                     top: getMenuPosition($menu, screenPosY, 'height', 'scrollTop'),
-                    zIndex: 1101
+                    zIndex: 1100
                 })
                 .show();
         }
 
         that.trigger('contextmenu-row', item, $tr);
 
-        if(that.options.contextMenuTriggerLeft) {
+        if(that.options.contextMenuAutoClickRow && that.options.contextMenuTrigger == 'right') {
             that.trigger('click-row', item, $tr);
         }
     };
