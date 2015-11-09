@@ -5,7 +5,7 @@ This is a super light-weight extension for wenzhixin's [Bootstrap table](http://
 
 Features
 -----
-- Supports right or left clicking a row to bring up a context menu.
+- Supports right or left clicking on a row to bring up a context menu.
 - Supports clicking on a button on the row to bring up a context menu (good for touch devices).
 - Works elegantly with Bootstrap dropdown menus and Font-Awesome.
 - Events for menu and item clicks.
