@@ -13,11 +13,18 @@ Demo
 -----
 See it in action: [demo here](http://www.prograhammer.com/demos/bootstrap-table-contextmenu)
 
+Installation
+-----
+###Bower
+```
+bower install bootstrap-table-contextmenu
+```
+
 Usage
 -----
-Include this extension:
+Include this extension after [Bootstrap-table](https://github.com/wenzhixin/bootstrap-table):
 ```
-<script src="../bootstrap-table-contextmenu.js"></script>
+<script src="bootstrap-table-contextmenu.js"></script>
 ```
 
 Simple example:
