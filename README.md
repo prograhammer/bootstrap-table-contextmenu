@@ -23,7 +23,7 @@ bower install bootstrap-table-contextmenu
 
 Usage
 -----
-Include this extension after [Bootstrap-table](https://github.com/wenzhixin/bootstrap-table):
+Include this extension after [Bootstrap-table](https://github.com/wenzhixin/bootstrap-table) (or add it to your gulpfile):
 ```
 <script src="bootstrap-table-contextmenu.js"></script>
 ```
