@@ -1,110 +1,147 @@
-/**
- * @author David Graham <prograhammer@gmail.com>
- * @version v1.0.0
- * @link https://github.com/prograhammer/bootstrap-table-contextmenu
- */
+    /**
+     * @author David Graham <prograhammer@gmail.com>
+     * @version v1.1.0
+     * @link https://github.com/prograhammer/bootstrap-table-contextmenu
+     */
 
-!function($) {
+    !function($) {
 
-    'use strict';
+        'use strict';
 
-    $.extend($.fn.bootstrapTable.defaults, {
-        contextMenu: undefined,
-        contextMenuTrigger: 'right',
-        contextMenuAutoClickRow: true,
-        contextMenuButton: undefined,
-        onContextMenuItem: function (row, $element) {
-            return false;
-        },
-        onContextMenuRow: function (row, $element) {
-            return false;
-        }
-    });
-
-    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
-        'contextmenu-item.bs.table': 'onContextMenuItem',
-        'contextmenu-row.bs.table': 'onContextMenuRow'
-    });
-
-    var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _initBody = BootstrapTable.prototype.initBody;
-
-    BootstrapTable.prototype.initBody = function () {
-
-        // InitBody
-        _initBody.apply(this, Array.prototype.slice.apply(arguments));
-
-        if (this.options.contextMenu) {
-            initContextMenu(this);
-        }
-    };
-
-    var initContextMenu = function (el) {
-        var that = el;
-
-        // Context menu on Right-click
-        if (that.options.contextMenuTrigger == 'right' || that.options.contextMenuTrigger == 'both') {
-            that.$body.find('> tr[data-index]').off('contextmenu').on('contextmenu', function (e) {
-                var $tr = $(this);
-                showContextMenu(that, $tr, e.clientX, e.clientY);
+        $.extend($.fn.bootstrapTable.defaults, {
+            // Options
+            contextMenu: undefined,
+            contextMenuTrigger: 'right',
+            contextMenuAutoClickRow: true,
+            contextMenuButton: undefined,
+            beforeContextMenuRow: function (e, row, buttonElement) {
+                // return false here to prevent menu showing
+            },
+            // Events
+            onContextMenuItem: function (row, $element) {
                 return false;
-            });
-        }
-
-        // Context menu on Left-click
-        if (that.options.contextMenuTrigger == 'left' || that.options.contextMenuTrigger == 'both') {
-            that.$body.find('> tr[data-index]').off('click').on('click', function (e) {
-                var $tr = $(this);
-                showContextMenu(that, $tr, e.clientX, e.clientY);
+            },
+            onContextMenuRow: function (row, $element) {
                 return false;
-            });
-        }
+            }
+        });
 
-        // Context menu on Button-click
-        if (typeof that.options.contextMenuButton === 'string') {
-            that.$body.find('> tr[data-index]').find(that.options.contextMenuButton).off('click').on('click', function (e) {
-                var $tr = $(this).closest('tr[data-index]');
-                showContextMenu(that, $tr, $(this)[0].getBoundingClientRect().left, $(this)[0].getBoundingClientRect().bottom);
-                return false;
-            });
-        }
+        $.fn.bootstrapTable.methods.push('showContextMenu');
 
-        if (typeof that.options.contextMenu === 'string') {
-            var $menu = $(that.options.contextMenu);
+        $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+            'contextmenu-item.bs.table': 'onContextMenuItem',
+            'contextmenu-row.bs.table': 'onContextMenuRow'
+        });
 
-            // Click on context menu item
-            var $row = that.$body.find('tr');
-            $menu.find('li').off('click').on('click', function (e) {
+        var BootstrapTable = $.fn.bootstrapTable.Constructor,
+            _initBody = BootstrapTable.prototype.initBody;
+
+        BootstrapTable.prototype.initBody = function () {
+
+            // InitBody
+            _initBody.apply(this, Array.prototype.slice.apply(arguments));
+
+            if (this.options.contextMenu || this.options.contextMenuButton || this.options.beforeContextMenuRow) {
+                this.initContextMenu();
+            }
+        };
+
+        // Init context menu
+        BootstrapTable.prototype.initContextMenu = function () {
+            var that = this;
+
+            // Context menu on Right-click
+            if (that.options.contextMenuTrigger == 'right' || that.options.contextMenuTrigger == 'both') {
+                that.$body.find('> tr[data-index]').off('contextmenu.contextmenu').on('contextmenu.contextmenu', function (e) {
+                    var rowData = that.data[$(this).data('index')],
+                        beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, null]);
+
+                    if(beforeShow !== false){
+                        that.showContextMenu({event: e});
+                    }
+                    return false;
+                });
+            }
+
+            // Context menu on Left-click
+            if (that.options.contextMenuTrigger == 'left' || that.options.contextMenuTrigger == 'both') {
+                that.$body.find('> tr[data-index]').off('click.contextmenu').on('click.contextmenu', function (e) {
+                    var rowData = that.data[$(this).data('index')],
+                        beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, null]);
+
+                    if(beforeShow !== false){
+                        that.showContextMenu({event: e});
+                    }
+                    return false;
+                });
+            }
+
+            // Context menu on Button-click
+            if (typeof that.options.contextMenuButton === 'string') {
+                that.$body.find('> tr[data-index]').find(that.options.contextMenuButton).off('click.contextmenu').on('click.contextmenu', function (e) {
+                    var rowData = that.data[$(this).closest('tr[data-index]').data('index')],
+                        beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, this]);
+
+                    if(beforeShow !== false){
+                        that.showContextMenu({event: e, buttonElement: this});
+                    }
+                    return false;
+                });
+            }
+        };
+
+        // Show context menu
+        BootstrapTable.prototype.showContextMenu = function (params) {
+            if(!params || !params.event){ return false; }
+            if(params && !params.contextMenu && typeof this.options.contextMenu !== 'string'){ return false; }
+
+            var that = this,
+                $menu, screenPosX, screenPosY,
+                $tr = $(params.event.target).closest('tr[data-index]'),
+                item = that.data[$tr.data('index')];
+
+            if(params && !params.contextMenu && typeof this.options.contextMenu === 'string'){
+                screenPosX = params.event.clientX;
+                screenPosY = params.event.clientY;
+                $menu = $(this.options.contextMenu);
+            }
+            if(params && params.contextMenu){
+                screenPosX = params.event.clientX;
+                screenPosY = params.event.clientY;
+                $menu = $(params.contextMenu);
+            }
+            if (params && params.buttonElement) {
+                screenPosX = params.buttonElement.getBoundingClientRect().left;
+                screenPosY = params.buttonElement.getBoundingClientRect().bottom;
+            }
+
+            function getMenuPosition($menu, screenPos, direction, scrollDir) {
+                var win = $(window)[direction](),
+                    scroll = $(window)[scrollDir](),
+                    menu = $menu[direction](),
+                    position = screenPos + scroll;
+
+                if (screenPos + menu > win && menu < screenPos)
+                    position -= menu;
+
+                return position;
+            }
+
+            // Bind click on menu item
+            $menu.find('li').off('click.contextmenu').on('click.contextmenu', function (e) {
                 var rowData = that.data[$menu.data('index')];
                 that.trigger('contextmenu-item', rowData, $(this));
             });
 
-            // Left click anywhere outside to hide context menu
-            $(document).click(function () {
-                $menu.hide();
+            // Bind click anywhere to hide the menu
+            $(document)
+                .trigger('click.contextmenu').trigger('contextmenu.contextmenu')
+                .off('contextmenu.contextmenu, click.contextmenu')
+                .on('contextmenu.contextmenu, click.contextmenu', function () {
+                    $menu.hide();
             });
-        }
 
-    }
-
-    var showContextMenu = function (el, $tr, screenPosX, screenPosY){
-        var that = el,
-            item = that.data[$tr.data('index')];
-
-        function getMenuPosition($menu, screenPos, direction, scrollDir) {
-            var win = $(window)[direction](),
-                scroll = $(window)[scrollDir](),
-                menu = $menu[direction](),
-                position = screenPos + scroll;
-
-            if (screenPos + menu > win && menu < screenPos)
-                position -= menu;
-
-            return position;
-        };
-
-        if (typeof that.options.contextMenu === 'string') {
-            var $menu = $(that.options.contextMenu);
+            // Show the menu
             $menu.data('index', $tr.data('index'))
                 .appendTo($('body'))
                 .css({
@@ -114,14 +151,13 @@
                     zIndex: 1100
                 })
                 .show();
-        }
 
-        that.trigger('contextmenu-row', item, $tr);
+            // Trigger events
+            that.trigger('contextmenu-row', item, $tr);
+            if(that.options.contextMenuAutoClickRow && that.options.contextMenuTrigger == 'right') {
+                that.trigger('click-row', item, $tr);
+            }
+        };
 
-        if(that.options.contextMenuAutoClickRow && that.options.contextMenuTrigger == 'right') {
-            that.trigger('click-row', item, $tr);
-        }
-    };
 
-
-}(jQuery);
+    }(jQuery);
