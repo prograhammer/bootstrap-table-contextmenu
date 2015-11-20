@@ -9,7 +9,7 @@ Features
 - Supports clicking on a button on a row to bring up a context menu (good for touch devices).
 - Works elegantly with Bootstrap dropdown menus and Font-Awesome.
 - Events for menu and item clicks.
-- Programmatically invoke the context menu you want to show (good for multiple context menus).
+- Also programmatically invoke the context menu you want to show (good for multiple context menus).
 
 Demo
 -----
