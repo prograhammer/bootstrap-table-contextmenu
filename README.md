@@ -74,7 +74,7 @@ Simple example:
 </body>
 ```
 
-Table Options
+Options
 -----
 
 |Name                    |Type                 |Default   |Description|
@@ -83,6 +83,14 @@ Table Options
 |contextMenuButton       |String               |undefined |A jQuery selector for a button on each table row to use to trigger open the contextmenu (good for touch screens).       |
 |contextMenuTrigger      |'right','left','both'|'right'   |Set what type of click will open the context menu.           |
 |contextMenuAutoClickRow |Boolean              |false     |When the context menu is opened, also perform a left click on the row to select it.|
+|beforeContextMenuRow    |Closure              |function(e,row,buttonElement){ } |The closure will be called before the context menu is shown. If your closure returns false, then this prevents the context menu default show behavior from happening. You can use this along with the method `showContextMenu` to have more programmatic control.  |
+
+Methods
+-----
+
+|Name                    |Parameter            |Description  | Example   |
+|------------------------|---------------------|-------------|-----------|
+|showContextMenu         |params               |Manually invoke the context menu to show. The params contain 3 properties:<br>**event:** (required) Pass your `e` event so that the menu can properly find the parent row index and data. Also so the menu can display at the correct coordinates. You can fake the event by just passing an object that has e.target, e.clientX, e.clientY. The target must be some child of the table row you want the menu to pull data from.<br>**contextMenu:** (optional) Pass the selector for the context menu you want to show. If this param is not set, then the selector given in the table options above will be used.<br>**buttonElement:** (optional) Pass a button element that you want the contextMenu to display correctly with.| [examples here](http://www.prograhammer.com/demos/bootstrap-table-contextmenu)  |
 
 Events
 -----
