@@ -1,6 +1,6 @@
 /**
  * @author David Graham <prograhammer@gmail.com>
- * @version v1.1.3
+ * @version v1.1.4
  * @link https://github.com/prograhammer/bootstrap-table-contextmenu
  */
 
@@ -55,9 +55,7 @@
 
         // Context menu on Right-click
         if (that.options.contextMenuTrigger == 'right' || that.options.contextMenuTrigger == 'both') {
-            that.$body.find('> tr[data-index]').off('contextmenu.contextmenu').on('contextmenu.contextmenu', function (e) {
-            	$('document').trigger('click.contextmenu');
-            	
+            that.$body.find('> tr[data-index]').off('contextmenu.contextmenu').on('contextmenu.contextmenu', function (e) {            	
                 var rowData = that.data[$(this).data('index')],
                     beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, null]);
 
@@ -70,9 +68,7 @@
 
         // Context menu on Left-click
         if (that.options.contextMenuTrigger == 'left' || that.options.contextMenuTrigger == 'both') {
-            that.$body.find('> tr[data-index]').off('click.contextmenu').on('click.contextmenu', function (e) {
-            	$('document').trigger('click.contextmenu');
-            	
+            that.$body.find('> tr[data-index]').off('click.contextmenu').on('click.contextmenu', function (e) {            	
                 var rowData = that.data[$(this).data('index')],
                     beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, null]);
 
@@ -85,9 +81,7 @@
 
         // Context menu on Button-click
         if (typeof that.options.contextMenuButton === 'string') {
-            that.$body.find('> tr[data-index]').find(that.options.contextMenuButton).off('click.contextmenu').on('click.contextmenu', function (e) {
-             	$('document').trigger('click.contextmenu');
-                
+            that.$body.find('> tr[data-index]').find(that.options.contextMenuButton).off('click.contextmenu').on('click.contextmenu', function (e) {                
                 var rowData = that.data[$(this).closest('tr[data-index]').data('index')],
                     beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, this]);
 
@@ -142,12 +136,16 @@
             that.trigger('contextmenu-item', rowData, $(this));
         });
 
-        // "one click" anywhere to hide the menu
-        $(document).one('mousemove.contextmenu', function () {
-		    $(document).one('click.contextmenu', function(){
-                	$menu.hide();
-		    });
+        // Click anywhere to hide the menu
+        $(document).off('click.contextmenu').on('click.contextmenu', function (e) {
+			// Fixes problem on Mac OSX
+        	if(that.pageX != e.pageX || that.pageY != e.pageY){
+        		$menu.hide();
+        		$(document).off('click.contextmenu');
+        	}
         });
+        that.pageX = params.event.pageX;
+        that.pageY = params.event.pageY;
 
         // Show the menu
         $menu.data('index', $tr.data('index'))
