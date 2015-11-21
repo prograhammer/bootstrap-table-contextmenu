@@ -136,9 +136,11 @@
             that.trigger('contextmenu-item', rowData, $(this));
         });
 
-        // Bind then Unbind "one click" anywhere to hide the menu
+        // "one click" anywhere to hide the menu
         $(document).one('mousedown.contextmenu', function () {
+			$(this).one('click.contextmenu, contextmenu.contextmenu', function(){
                 $menu.hide();
+			});
         });
 
         // Show the menu
