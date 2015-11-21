@@ -10,6 +10,7 @@ Features
 - Works elegantly with Bootstrap dropdown menus and Font-Awesome.
 - Events for menu and item clicks.
 - Also programmatically invoke the context menu you want to show (good for multiple context menus).
+- Also works on Mac OSX.
 
 Demo
 -----
