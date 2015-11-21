@@ -1,6 +1,6 @@
 /**
  * @author David Graham <prograhammer@gmail.com>
- * @version v1.1.2
+ * @version v1.1.3
  * @link https://github.com/prograhammer/bootstrap-table-contextmenu
  */
 
@@ -56,6 +56,8 @@
         // Context menu on Right-click
         if (that.options.contextMenuTrigger == 'right' || that.options.contextMenuTrigger == 'both') {
             that.$body.find('> tr[data-index]').off('contextmenu.contextmenu').on('contextmenu.contextmenu', function (e) {
+            	$('document').trigger('click.contextmenu');
+            	
                 var rowData = that.data[$(this).data('index')],
                     beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, null]);
 
@@ -69,6 +71,8 @@
         // Context menu on Left-click
         if (that.options.contextMenuTrigger == 'left' || that.options.contextMenuTrigger == 'both') {
             that.$body.find('> tr[data-index]').off('click.contextmenu').on('click.contextmenu', function (e) {
+            	$('document').trigger('click.contextmenu');
+            	
                 var rowData = that.data[$(this).data('index')],
                     beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, null]);
 
@@ -82,6 +86,8 @@
         // Context menu on Button-click
         if (typeof that.options.contextMenuButton === 'string') {
             that.$body.find('> tr[data-index]').find(that.options.contextMenuButton).off('click.contextmenu').on('click.contextmenu', function (e) {
+             	$('document').trigger('click.contextmenu');
+                
                 var rowData = that.data[$(this).closest('tr[data-index]').data('index')],
                     beforeShow = that.options.beforeContextMenuRow.apply(this, [e, rowData, this]);
 
@@ -138,9 +144,9 @@
 
         // "one click" anywhere to hide the menu
         $(document).one('mousemove.contextmenu', function () {
-		$(this).one('click.contextmenu, contextmenu.contextmenu', function(){
+		    $(document).one('click.contextmenu', function(){
                 	$menu.hide();
-		});
+		    });
         });
 
         // Show the menu
