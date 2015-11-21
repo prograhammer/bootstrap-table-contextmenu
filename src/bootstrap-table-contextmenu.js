@@ -137,7 +137,7 @@
         });
 
         // "one click" anywhere to hide the menu
-        $(document).one('mousedown.contextmenu', function () {
+        $(document).one('mousemove.contextmenu', function () {
 		$(this).one('click.contextmenu, contextmenu.contextmenu', function(){
                 	$menu.hide();
 		});
