@@ -1,6 +1,6 @@
 /**
  * @author David Graham <prograhammer@gmail.com>
- * @version v1.1.1
+ * @version v1.1.2
  * @link https://github.com/prograhammer/bootstrap-table-contextmenu
  */
 
@@ -138,9 +138,9 @@
 
         // "one click" anywhere to hide the menu
         $(document).one('mousedown.contextmenu', function () {
-			$(this).one('click.contextmenu, contextmenu.contextmenu', function(){
-                $menu.hide();
-			});
+		$(this).one('click.contextmenu, contextmenu.contextmenu', function(){
+                	$menu.hide();
+		});
         });
 
         // Show the menu
