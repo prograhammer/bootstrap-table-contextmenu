@@ -137,6 +137,7 @@
         });
 
         // Click anywhere to hide the menu
+        $(document).triggerHandler('click.contextmenu');
         $(document).off('click.contextmenu').on('click.contextmenu', function (e) {
 			// Fixes problem on Mac OSX
         	if(that.pageX != e.pageX || that.pageY != e.pageY){
