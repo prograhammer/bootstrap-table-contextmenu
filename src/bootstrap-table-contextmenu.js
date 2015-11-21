@@ -1,6 +1,6 @@
     /**
      * @author David Graham <prograhammer@gmail.com>
-     * @version v1.1.0
+     * @version v1.1.1
      * @link https://github.com/prograhammer/bootstrap-table-contextmenu
      */
 
@@ -9,7 +9,7 @@
         'use strict';
 
         $.extend($.fn.bootstrapTable.defaults, {
-            // Options
+            // Option defaults
             contextMenu: undefined,
             contextMenuTrigger: 'right',
             contextMenuAutoClickRow: true,
@@ -17,7 +17,7 @@
             beforeContextMenuRow: function (e, row, buttonElement) {
                 // return false here to prevent menu showing
             },
-            // Events
+            // Event default handlers
             onContextMenuItem: function (row, $element) {
                 return false;
             },
@@ -25,9 +25,11 @@
                 return false;
             }
         });
-
+		
+		// Methods
         $.fn.bootstrapTable.methods.push('showContextMenu');
 
+		// Events
         $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
             'contextmenu-item.bs.table': 'onContextMenuItem',
             'contextmenu-row.bs.table': 'onContextMenuRow'
@@ -38,9 +40,10 @@
 
         BootstrapTable.prototype.initBody = function () {
 
-            // InitBody
+            // Init Body
             _initBody.apply(this, Array.prototype.slice.apply(arguments));
 
+            // Init Context menu
             if (this.options.contextMenu || this.options.contextMenuButton || this.options.beforeContextMenuRow) {
                 this.initContextMenu();
             }
@@ -133,11 +136,8 @@
                 that.trigger('contextmenu-item', rowData, $(this));
             });
 
-            // Bind click anywhere to hide the menu
-            $(document)
-                .trigger('click.contextmenu').trigger('contextmenu.contextmenu')
-                .off('contextmenu.contextmenu, click.contextmenu')
-                .on('contextmenu.contextmenu, click.contextmenu', function () {
+            // Bind then Unbind "one click" anywhere to hide the menu
+            $(document).one('mousedown.contextmenu', function () {
                     $menu.hide();
             });
 
