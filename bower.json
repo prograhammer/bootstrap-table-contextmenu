@@ -6,7 +6,7 @@
     ],
     "description": "An extension for wenzhixin's Bootstrap table that adds context menu support.",
     "main": [
-        "src/bootstrap-table-contextmenu.js",
+        "src/bootstrap-table-contextmenu.js"
     ],
     "keywords": [
         "bootstrap",
@@ -18,8 +18,8 @@
     "ignore": [
         "node_modules",
         "extension.json",
-        "README.md"
+        "README.md",
         ".gitignore",
-    		"package.json"
+        "package.json"
     ]
 }
